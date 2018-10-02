@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.0.1-alpha</Version>
+    <Authors>Adam Curtis</Authors>
+    <Company>PC Construction</Company>
+    <PackageProjectUrl>https://github.com/pcconstruction/procore-dotnet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/pcconstruction/procore-dotnet/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/pcconstruction/procore-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Procore</PackageTags>
+    <Description>.NET standard implementation of the Procore API.
+</Description>
+  </PropertyGroup>
+
+</Project>
