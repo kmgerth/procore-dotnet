@@ -27,7 +27,10 @@ namespace Procore.Api.Tests
         {
             const string token = "invalid_token";
             var client = new ProcoreClient(token);
-
+            
+            Assert.NotNull(client.CompanyClient);
+            Assert.NotNull(client.CompanyUserClient);
+            Assert.NotNull(client.CompanyVendorClient);
             Assert.NotNull(client.ProjectClient);
         }
     }

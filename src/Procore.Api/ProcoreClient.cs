@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
+using Procore.Api.Core.CompanyDirectory;
 using Procore.Api.Core.Project;
 
 [assembly: InternalsVisibleTo("Procore.Api.Tests")]
@@ -15,6 +16,21 @@ namespace Procore.Api
         //---------------------------------------------------------------------
         // Properties - Public
         //---------------------------------------------------------------------
+
+        /// <summary>
+        ///     <see cref="CompanyClient" />.
+        /// </summary>
+        public CompanyClient CompanyClient { get; set; }
+
+        /// <summary>
+        ///     <see cref="CompanyUserClient" />.
+        /// </summary>
+        public CompanyUserClient CompanyUserClient { get; set; }
+
+        /// <summary>
+        ///     <see cref="CompanyVendorClient" />.
+        /// </summary>
+        public CompanyVendorClient CompanyVendorClient { get; set; }
 
         /// <summary>
         ///     <see cref="ProjectClient" />.
@@ -44,6 +60,9 @@ namespace Procore.Api
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             // Initialize the properties.
+            CompanyClient = new CompanyClient(httpClient);
+            CompanyUserClient = new CompanyUserClient(httpClient);
+            CompanyVendorClient = new CompanyVendorClient(httpClient);
             ProjectClient = new ProjectClient(httpClient);
         }
     }
