@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
+using Procore.Api.Core.Project;
 
 [assembly: InternalsVisibleTo("Procore.Api.Tests")]
 namespace Procore.Api
@@ -11,6 +12,15 @@ namespace Procore.Api
     /// </summary>
     public class ProcoreClient
     {
+        //---------------------------------------------------------------------
+        // Properties - Public
+        //---------------------------------------------------------------------
+
+        /// <summary>
+        ///     <see cref="ProjectClient" />.
+        /// </summary>
+        public ProjectClient ProjectClient { get; set; }
+
         //---------------------------------------------------------------------
         // Constructor - Public
         //---------------------------------------------------------------------
@@ -32,6 +42,9 @@ namespace Procore.Api
             // Determine if the HTTP client is null.
             httpClient = httpClient ?? new HttpClient {BaseAddress = new Uri("https://app.procore.com")};
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            // Initialize the properties.
+            ProjectClient = new ProjectClient(httpClient);
         }
     }
 }

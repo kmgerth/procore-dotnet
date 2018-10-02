@@ -17,5 +17,18 @@ namespace Procore.Api.Tests
         {
             Assert.Throws<ArgumentNullException>(() => new ProcoreClient(token));
         }
+
+        //---------------------------------------------------------------------
+        // Properties
+        //---------------------------------------------------------------------
+
+        [Fact]
+        public void Constructor_ValidArgument_PropertiesNotNull_Succeed()
+        {
+            const string token = "invalid_token";
+            var client = new ProcoreClient(token);
+
+            Assert.NotNull(client.ProjectClient);
+        }
     }
 }
