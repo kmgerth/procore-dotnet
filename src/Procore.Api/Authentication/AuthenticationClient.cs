@@ -49,7 +49,7 @@ namespace Procore.Api.Authentication
             // If a client was not passed in, construct one.
             if (client == null)
             {
-                client = new HttpClient { BaseAddress = new Uri("https://app.procore.com/") };
+                client = new HttpClient { BaseAddress = new Uri("https://login.procore.com/") };
                 client.DefaultRequestHeaders.Accept.Clear();
             }
 
@@ -100,7 +100,7 @@ namespace Procore.Api.Authentication
             // If a client was not passed in, construct one.
             if (client == null)
             {
-                client = new HttpClient { BaseAddress = new Uri("https://app.procore.com/") };
+                client = new HttpClient { BaseAddress = new Uri("https://login.procore.com/") };
                 client.DefaultRequestHeaders.Accept.Clear();
             }
 
@@ -157,7 +157,7 @@ namespace Procore.Api.Authentication
             // If a client was not passed in, construct one.
             if (client == null)
             {
-                client = new HttpClient { BaseAddress = new Uri("https://app.procore.com/") };
+                client = new HttpClient { BaseAddress = new Uri("https://login.procore.com/") };
                 client.DefaultRequestHeaders.Accept.Clear();
             }
 

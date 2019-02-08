@@ -56,7 +56,7 @@ namespace Procore.Api
             }
 
             // Determine if the HTTP client is null.
-            httpClient = httpClient ?? new HttpClient {BaseAddress = new Uri("https://app.procore.com")};
+            httpClient = httpClient ?? new HttpClient {BaseAddress = new Uri("https://api.procore.com")};
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             // Initialize the properties.
