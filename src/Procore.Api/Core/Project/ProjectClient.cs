@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -65,6 +66,39 @@ namespace Procore.Api.Core.Project
 
                 // Read the stream and return the list of objects.
                 return JsonConvert.DeserializeObject<List<Project>>(responseString);
+            }
+
+            // If the request was not successful, throw an error.
+            throw new Exception(response.ReasonPhrase);
+        }
+
+        /// <summary>
+        ///     Creates New <see cref="Project"/> objects from the API.
+        /// </summary>
+        /// <param name="newProject">Project.</param>
+        /// <exception cref="Exception" />
+        /// <exception cref="ArgumentException" />
+        /// <exception cref="HttpRequestException" />
+        public async Task<Project> PostAsync(Project newProject)
+        {
+            // create http content from object
+            var myContent = JsonConvert.SerializeObject(newProject);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            JsonConvert.SerializeObject(newProject);
+            // Create the stream task using the HTTP client.
+            HttpResponseMessage response = await _httpClient.PostAsync($"/vapid/projects", byteContent);
+
+            // If the request was successful, parse and return the response.
+            if (response.IsSuccessStatusCode)
+            {
+                // Create the stream task using the HTTP client.
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                // Read the stream and return the list of objects.
+                return JsonConvert.DeserializeObject<Project>(responseString);
             }
 
             // If the request was not successful, throw an error.

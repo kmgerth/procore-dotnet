@@ -129,6 +129,12 @@ namespace Procore.Api.Core.Project
         [DataMember(Name = "zip")]
         public string Zip { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the zip code of the <see cref="Project" />.
+        /// </summary>
+        [DataMember(Name = "company_id")]
+        public int Company_id { get; set; }
+
         [DataContract]
         public struct CompanyStruct
         {
