@@ -44,7 +44,7 @@ namespace Procore.Api.Core.CompanyDirectory
         /// </summary>
         /// <exception cref="Exception" />
         /// <exception cref="HttpRequestException" />
-        public async Task<List<Company>> GetAsync()
+        public async Task<List<Company>> GetCompanyAsync()
         {
             // Create the stream task using the HTTP client.
             HttpResponseMessage response = await _httpClient.GetAsync($"/vapid/companies");

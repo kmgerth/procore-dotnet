@@ -47,7 +47,7 @@ namespace Procore.Api.Core.Project
         /// <exception cref="Exception" />
         /// <exception cref="ArgumentException" />
         /// <exception cref="HttpRequestException" />
-        public async Task<List<Project>> GetAsync(int company)
+        public async Task<List<Project>> GetProjectsAsync(int company)
         {
             // Determine if the company is valid.
             if (company <= 0)
@@ -79,7 +79,7 @@ namespace Procore.Api.Core.Project
         /// <exception cref="Exception" />
         /// <exception cref="ArgumentException" />
         /// <exception cref="HttpRequestException" />
-        public async Task<Project> PostAsync(Project newProject)
+        public async Task<Project> CreateNewProjectAsync(Project newProject)
         {
             // create http content from object
             var myContent = JsonConvert.SerializeObject(newProject);

@@ -25,13 +25,13 @@ namespace Procore.Api.Tests.Core
 
         [Theory]
         [InlineData(null)]
-        public async Task CreateAsync_InvalidCompany_ThrowArgumentNullException(NewCompanyVendor vendor)
+        public async Task CreateAsync_InvalidCompany_ThrowArgumentNullException(CompanyVendorCreate vendor)
         {
             // Create the mock variables.
             HttpClient httpClient = new HttpClient();
             CompanyVendorClient companyVendorClient = new CompanyVendorClient(httpClient);
 
-            await Assert.ThrowsAsync<ArgumentNullException>(async () => await companyVendorClient.CreateAsync(vendor));
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => await companyVendorClient.CreateComapnyVendorAsync(vendor));
         }        
     }
 }

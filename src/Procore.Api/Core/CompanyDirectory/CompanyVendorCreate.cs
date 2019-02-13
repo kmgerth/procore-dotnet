@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace Procore.Api.Core.CompanyDirectory
 {
@@ -6,7 +7,7 @@ namespace Procore.Api.Core.CompanyDirectory
     ///     Represents a new <see cref="Company" /> vendor.
     /// </summary>
     [DataContract]
-    public class NewCompanyVendor
+    public class CompanyVendorCreate
     {
         //---------------------------------------------------------------------
         // Properties - Public
@@ -29,11 +30,13 @@ namespace Procore.Api.Core.CompanyDirectory
         //---------------------------------------------------------------------
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="NewCompanyVendor" /> class.
+        ///     Initializes a new instance of the <see cref="CompanyVendorCreate" /> class.
         /// </summary>
-        public NewCompanyVendor()
+        public CompanyVendorCreate()
         {
             VendorDetail = new Vendor();
+            VendorDetail.project_ids = new List<int>();
+
         }
 
         //---------------------------------------------------------------------
@@ -46,15 +49,24 @@ namespace Procore.Api.Core.CompanyDirectory
         [DataContract]
         public class Vendor
         {
+
             //---------------------------------------------------------------------
             // Properties - Public
             //---------------------------------------------------------------------
 
+            [DataMember(Name = "project_ids")]
+            public List<int> project_ids { get; set; }
             /// <summary>
             ///     Gets or sets the <see cref="Vendor" /> abbreviated name.
             /// </summary>
             [DataMember(Name = "abbreviated_name")]
             public string AbbreviatedName { get; set; }
+
+            /// <summary>
+            ///     Gets or sets the <see cref="Vendor" /> trade name.
+            /// </summary>
+            [DataMember(Name = "trade_name")]
+            public string TradeName { get; set; }
 
             /// <summary>
             ///     Gets or sets the <see cref="Vendor" /> address.

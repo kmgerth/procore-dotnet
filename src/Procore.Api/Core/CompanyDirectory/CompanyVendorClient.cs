@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,12 +41,44 @@ namespace Procore.Api.Core.CompanyDirectory
         //---------------------------------------------------------------------
 
         /// <summary>
+        ///     Retrieves all <see cref="CompanyVendor"/> objects from the API.
+        /// </summary>
+        /// <param name="company">Company ID.</param>
+        /// <exception cref="Exception" />
+        /// <exception cref="ArgumentException" />
+        /// <exception cref="HttpRequestException" />
+        public async Task<List<CompanyVendor>> GetCompanyVendorAsync(int company)
+        {
+            // Determine if the company is valid.
+            if (company <= 0)
+            {
+                throw new ArgumentException("The company ID is not valid.", nameof(company));
+            }
+
+            // Create the stream task using the HTTP client.
+            HttpResponseMessage response = await _httpClient.GetAsync($"/vapid/vendors?company_id={company}");
+
+            // If the request was successful, parse and return the response.
+            if (response.IsSuccessStatusCode)
+            {
+                // Create the stream task using the HTTP client.
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                // Read the stream and return the list of objects.
+                return JsonConvert.DeserializeObject<List<CompanyVendor>>(responseString);
+            }
+
+            // If the request was not successful, throw an error.
+            throw new Exception(response.ReasonPhrase);
+        }
+
+        /// <summary>
         ///     Creates a new <see cref="CompanyVendor" />.
         /// </summary>
         /// <param name="vendor">Vendor of the <see cref="Company" />.</param>
         /// <exception cref="ArgumentNullException" />
         /// <exception cref="HttpRequestException" />
-        public async Task<CompanyVendor> CreateAsync(NewCompanyVendor vendor)
+        public async Task<CompanyVendor> CreateComapnyVendorAsync(CompanyVendorCreate vendor)
         {
             // Determine if the company vendor is null.
             if (vendor == null)

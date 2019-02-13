@@ -32,7 +32,7 @@ namespace Procore.Api.Tests.Core.Project
             HttpClient httpClient = new HttpClient();
             ProjectClient companyUserClient = new ProjectClient(httpClient);
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await companyUserClient.GetAsync(company));
+            await Assert.ThrowsAsync<ArgumentException>(async () => await companyUserClient.GetProjectsAsync(company));
         }
     }
 }
